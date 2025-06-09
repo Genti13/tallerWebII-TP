@@ -1,7 +1,14 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-
-const routes: Routes = [];
+import { ProductosComponent } from './productos/productos.component';
+import { CarritoComponent } from './carrito/carrito.component';
+import { HomeComponent } from './home/home.component';
+const routes: Routes = [
+  { path: '', component: HomeComponent, pathMatch: 'full' },
+  { path: 'productos', component: ProductosComponent },
+  { path: 'carrito', component: CarritoComponent },
+  { path: '**', redirectTo: '' } // ruta wildcard por si alguien entra mal
+];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
