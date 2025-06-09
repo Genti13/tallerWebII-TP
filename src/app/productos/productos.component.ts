@@ -2,8 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { ProductoService } from '../servicios/producto.service';
 
 @Component({
-  selector: 'app-productos',
-  templateUrl: './productos.component.html'
+    selector: 'app-productos',
+    templateUrl: './productos.component.html',
+    standalone: false
 })
 export class ProductosComponent implements OnInit {
   productos: any[] = [];

@@ -2,8 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { ProductoService } from '../servicios/producto.service';
 
 @Component({
-  selector: 'app-carrito',
-  templateUrl: './carrito.component.html'
+    selector: 'app-carrito',
+    templateUrl: './carrito.component.html',
+    standalone: false
 })
 export class CarritoComponent implements OnInit {
   carrito: any[] = [];
