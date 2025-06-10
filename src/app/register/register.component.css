@@ -1,0 +1,127 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+
+
+.registro-container {
+  max-width: 500px;
+  height: auto;
+  margin: 3rem auto;
+  padding: 2rem;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0,0,0,0.1);
+  background: white;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  
+} 
+.p-field {
+  margin-bottom: 1.5rem;
+  display: flex;
+  flex-direction: column;
+ 
+}
+
+.p-field input{
+    width: 350px;
+    height: 35px;
+    padding: 10px;
+    
+}
+
+input.p-inputtext {
+  border: 2px solid rgb(175, 175, 175) !important;
+}
+
+
+:host ::ng-deep .p-password input {
+  width: 350px;
+   height: 35px;
+   padding: 10px;
+   border: 2px solid rgb(175, 175, 175) !important;
+}
+
+.p-field label{
+    margin-bottom: 5px;
+}
+
+
+.bienvenida img {
+  width: 120px;
+  height: auto;
+  transition: transform 0.3s ease-in-out;
+}
+
+.bienvenida img:hover {
+  transform: scale(1.05);
+}
+
+.background {
+  background-image: url(../../../public/fondo.jpg); 
+  background-size: 400px;            
+  background-repeat: repeat;        
+  background-position: top left; 
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 2rem;
+}
+
+.boton-registro {
+  background-color: #2a8484;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  padding: 10px 20px;
+  font-weight: bold;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.boton-registro:hover {
+  background-color: #247171;
+  transform: scale(1.03);
+}
+
+.boton-registro:disabled {
+  background-color: #a0a0a0;
+  cursor: not-allowed;
+}
+
+.p-error{
+  color: rgb(165, 13, 13);
+}
+
+@media (max-width: 500px) {
+  .background {
+    background: white !important;
+    display: block;
+
+  
+  }
+
+  .registro-container {
+    box-shadow: none;
+    background: white;
+    padding: 1rem;
+    margin-top: 0;     
+    
+  }
+
+  .p-field input,
+  :host ::ng-deep .p-password input {
+    font-size: 1rem;
+    height: 38px;
+  }
+
+  .bienvenida img {
+    width: 80px;
+    margin-top: 0;
+  }
+}
