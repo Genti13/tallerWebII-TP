@@ -7,7 +7,7 @@ h2{
   text-align: center;
 }
 
-.registro-container {
+.login-container {
   max-width: 500px;
   height: auto;
   margin: 3rem auto;
@@ -26,14 +26,6 @@ h2{
   margin-bottom: 1.5rem;
   display: flex;
   flex-direction: column;
- 
-}
-
-.p-field input{
-    width: 350px;
-    height: 35px;
-    padding: 10px;
-    
 }
 
 input.p-inputtext {
@@ -47,6 +39,18 @@ input.p-inputtext {
    padding: 10px;
    border: 2px solid rgb(175, 175, 175) !important;
 }
+
+
+.p-field input{
+    width: 350px;
+    height: 35px;
+    padding: 10px;
+}
+
+.p-error{
+  color: rgb(165, 13, 13);
+}
+
 
 .p-field label{
     margin-bottom: 5px;
@@ -64,7 +68,7 @@ input.p-inputtext {
 }
 
 .background {
-  background-image: url(../../../public/fondo.jpg); 
+  background-image: url(../../../public/fondo.jpg);
   background-size: 400px;            
   background-repeat: repeat;        
   background-position: top left; 
@@ -75,7 +79,7 @@ input.p-inputtext {
   padding: 2rem;
 }
 
-.boton-registro {
+.boton-login {
   background-color: #2a8484;
   color: white;
   border: none;
@@ -87,18 +91,14 @@ input.p-inputtext {
   transition: background-color 0.3s ease, transform 0.2s ease;
 }
 
-.boton-registro:hover {
+.boton-login:hover {
   background-color: #247171;
   transform: scale(1.03);
 }
 
-.boton-registro:disabled {
+.boton-login:disabled {
   background-color: #a0a0a0;
   cursor: not-allowed;
-}
-
-.p-error{
-  color: rgb(165, 13, 13);
 }
 
 @media (max-width: 500px) {
@@ -109,7 +109,7 @@ input.p-inputtext {
   
   }
 
-  .registro-container {
+  .login-container {
     box-shadow: none;
     background: white;
     padding: 1rem;

@@ -4,6 +4,7 @@ import { ProductoService } from '../servicios/producto.service';
 @Component({
     selector: 'app-carrito',
     templateUrl: './carrito.component.html',
+    styleUrls: ['./carrito.component.css'],
     standalone: false
 })
 export class CarritoComponent implements OnInit {
