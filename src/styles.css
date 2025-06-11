@@ -2,3 +2,40 @@
 body, app-root {
   margin-top: 60px !important;
 }
+
+#toast-container {
+  position: fixed !important;
+  z-index: 9999 !important;
+  pointer-events: none;
+}
+
+#toast-container.toast-top-right {
+  top: 1.5rem;
+  right: 1.5rem;
+}
+
+#toast-container .ngx-toastr {
+  pointer-events: auto;
+}
+.custom-toastr {
+  background: #e0f7fa !important;
+  color: #00796b !important;
+  border-radius: 12px !important;
+  font-weight: bold;
+  box-shadow: 0 8px 32px rgba(0,0,0,0.18) !important;
+  border: 2px solid #4dd0e1 !important;
+  padding: 18px 28px !important;
+  font-size: 1.1rem;
+  animation: slideInToastr 0.4s;
+}
+
+@keyframes slideInToastr {
+  from {
+    opacity: 0;
+    transform: translateY(-30px) scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}

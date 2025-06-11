@@ -7,7 +7,7 @@ const routes: Routes = [
   { path: '', component: HomeComponent, pathMatch: 'full' },
   { path: 'productos', component: ProductosComponent },
   { path: 'carrito', component: CarritoComponent },
-  { path: '**', redirectTo: '' } // ruta wildcard por si alguien entra mal
+  { path: '', redirectTo: '/productos', pathMatch: 'full' },
 ];
 
 @NgModule({

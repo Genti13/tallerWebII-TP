@@ -3,7 +3,7 @@
   "extends": "../tsconfig.json",
   "compilerOptions": {
     "outDir": "../out-tsc/e2e",
-    "module": "commonjs",
+    "module": "es2015",
     "target": "es2018",
     "types": [
       "jasmine",
