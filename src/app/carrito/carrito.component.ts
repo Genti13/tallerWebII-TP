@@ -1,6 +1,5 @@
 import { Component } from '@angular/core';
-import { CarritoService } from '../services_carrito/carrito.service';
-import { Producto } from '../models/producto.model';
+import { CarritoService, ItemCarrito } from '../services_carrito/carrito.service';
 import { CommonModule } from '@angular/common';
 import { ToastrService } from 'ngx-toastr';
 
@@ -13,20 +12,20 @@ import { ToastrService } from 'ngx-toastr';
 })
 export class CarritoComponent {
   constructor(
-  public carritoService: CarritoService,
-  private toastr: ToastrService
-) {}
+    public carritoService: CarritoService,
+    private toastr: ToastrService
+  ) {}
 
-  get items(): Producto[] {
+  get items(): ItemCarrito[] {
     return this.carritoService.getItems();
   }
 
   get total(): number {
-    return this.items.reduce((sum, item) => sum + item.precio, 0);
+    return this.items.reduce((sum, item) => sum + item.producto.precio * item.cantidad, 0);
   }
 
   eliminarItem(index: number): void {
-    const prod = this.items[index];
+    const prod = this.items[index].producto;
     this.carritoService.removeItem(index);
     this.toastr.info(
       'Producto eliminado del carrito',

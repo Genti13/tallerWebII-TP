@@ -10,16 +10,20 @@
           <th>#</th>
           <th>Producto</th>
           <th>Clasificación</th>
-          <th>Precio</th>
+          <th>Cantidad</th>
+          <th>Precio unitario</th>
+          <th>Subtotal</th>
           <th>Quitar</th>
         </tr>
       </thead>
       <tbody>
         <tr *ngFor="let item of items; index as i">
           <td>{{ i + 1 }}</td>
-          <td>{{ item.nombre }}</td>
-          <td>{{ item.clasificacion }}</td>
-          <td class="fw-bold">$ {{ item.precio | number:'1.2-2' }}</td>
+          <td>{{ item.producto.nombre }}</td>
+          <td>{{ item.producto.clasificacion }}</td>
+          <td>{{ item.cantidad }}</td>
+          <td class="fw-bold">$ {{ item.producto.precio | number:'1.2-2' }}</td>
+          <td class="fw-bold">$ {{ (item.producto.precio * item.cantidad) | number:'1.2-2' }}</td>
           <td>
             <button class="btn btn-danger btn-sm"
                     (click)="eliminarItem(i)">
@@ -30,7 +34,7 @@
       </tbody>
       <tfoot>
         <tr>
-          <td colspan="3" class="text-end fw-bold">Total:</td>
+          <td colspan="5" class="text-end fw-bold">Total:</td>
           <td colspan="2" class="fw-bold text-success">$ {{ total | number:'1.2-2' }}</td>
         </tr>
       </tfoot>
