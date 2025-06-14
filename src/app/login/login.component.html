@@ -27,6 +27,8 @@
       <p-button class="boton-login" type="submit" label="Ingresar" [disabled]="formLogin.invalid"></p-button>
     </form>
     <br>
-    <p-button routerLink="/register" routerLinkActive="active">¿No tenés cuenta? Registrate</p-button>
+    <p *ngIf="errorMsg" class="p-error" style="margin-top: 1rem;">{{ errorMsg }}</p>
+    <br>
+    <p-button routerLink="/register" routerLinkActive="active" class="redirigir">¿No tenés cuenta? Registrate</p-button>
   </div>
 </div>

@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { HttpErrorResponse } from '@angular/common/http';
+import { RegisterService } from '../servicios/RegisterService/register.service';
 
 @Component({
   selector: 'app-register',
@@ -10,7 +12,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 export class RegisterComponent implements OnInit {
   formRegistro!: FormGroup;
 
-  constructor(private fb: FormBuilder) {}
+  constructor(private fb: FormBuilder, private registerService: RegisterService) {}
 
   ngOnInit() {
     this.formRegistro = this.fb.group({
@@ -22,10 +24,36 @@ export class RegisterComponent implements OnInit {
   }
 
   registrarse() {
-    if (this.formRegistro.valid) {
-      const datos = this.formRegistro.value;
-      console.log('Datos de registro:', datos);
-      // Acá podrías enviar los datos a un backend
-    }
+  if (this.formRegistro.invalid) {
+    this.formRegistro.markAllAsTouched();
+    return;
   }
+
+  const { nombre, email, password, confirmar } = this.formRegistro.value;
+
+  if (password !== confirmar) {
+    alert('Las contraseñas no coinciden');
+    return;
+  }
+
+  const datosRegistro = {
+    nombre,
+    email,
+    password
+  };
+
+  this.registerService.registrarUsuario(datosRegistro).subscribe({
+    next: (respuesta) => {
+      console.log('Registro exitoso:', respuesta);
+      alert('¡Registro exitoso!');
+      this.formRegistro.reset();
+    },
+    error: (error: HttpErrorResponse) => {
+      console.error('Error al registrar:', error);
+      alert('Ocurrió un error al registrar. Verificá los datos o intentá más tarde.');
+    }
+  });
+}
+
+
 }

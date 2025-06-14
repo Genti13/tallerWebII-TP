@@ -101,6 +101,15 @@ input.p-inputtext {
   color: rgb(165, 13, 13);
 }
 
+::ng-deep .redirigir .p-button {
+  color: black;
+}
+
+::ng-deep .redirigir .p-button:hover {
+  text-decoration: underline;
+}
+
+
 @media (max-width: 500px) {
   .background {
     background: white !important;
