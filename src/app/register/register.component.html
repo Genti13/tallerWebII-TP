@@ -15,7 +15,21 @@
         El nombre es obligatorio
       </small>
     </div>
-
+    <div class="p-field">
+      <label for="apellido">Apellido</label>
+      <input id="apellido" type="text" pInputText formControlName="apellido" />
+      <small *ngIf="formRegistro.get('apellido')?.invalid && formRegistro.get('apellido')?.touched" class="p-error">
+        El apellido es obligatorio
+      </small>
+    </div>
+    <div class="p-field">
+      <label for="direccion">Dirección</label>
+      <input id="direccion" type="text" pInputText formControlName="direccion" />
+      <small *ngIf="formRegistro.get('direccion')?.invalid && formRegistro.get('direccion')?.touched" class="p-error">
+        La direccion es obligatorio
+      </small>
+    </div>
+  
     <div class="p-field">
       <label for="email">Email</label>
       <input id="email" type="email" pInputText formControlName="email" />

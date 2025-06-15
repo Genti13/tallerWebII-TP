@@ -17,6 +17,8 @@ export class RegisterComponent implements OnInit {
   ngOnInit() {
     this.formRegistro = this.fb.group({
       nombre: ['', Validators.required],
+      apellido: ['', Validators.required],
+      direccion: ['', Validators.required],
       email: ['', [Validators.required, Validators.email]],
       password: ['', Validators.required],
       confirmar: ['', Validators.required]
@@ -29,7 +31,7 @@ export class RegisterComponent implements OnInit {
     return;
   }
 
-  const { nombre, email, password, confirmar } = this.formRegistro.value;
+  const { nombre, apellido, direccion, email, password, confirmar } = this.formRegistro.value;
 
   if (password !== confirmar) {
     alert('Las contraseñas no coinciden');
@@ -38,6 +40,8 @@ export class RegisterComponent implements OnInit {
 
   const datosRegistro = {
     nombre,
+    apellido,
+    direccion,
     email,
     password
   };
