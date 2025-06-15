@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { AuthService } from './servicios/AuthService/auth.service';
 
 @Component({
     selector: 'app-root',
@@ -7,5 +8,12 @@ import { Component } from '@angular/core';
     standalone: false
 })
 export class AppComponent {
+  constructor(public authService: AuthService) {}
   title = 'tallerWeb-tp';
+
+
+salir() {
+    this.authService.logout();
+  }
+
 }

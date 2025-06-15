@@ -29,7 +29,9 @@ app.post('/register', (req, res) => {
 app.post('/login', (req, res) => {
   const { email, password } = req.body;
 
-  const usuarioEncontrado = usuarios.find(u => u.email === email && u.password === password);
+  const usuarioEncontrado = usuarios.find(u =>
+  u.email === email && u.password === password && !u.logueado
+);
 
   if (usuarioEncontrado) {
     res.status(200).json({ message: 'Login exitoso', user: usuarioEncontrado });

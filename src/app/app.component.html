@@ -6,7 +6,8 @@
   <nav style="margin-left:auto; margin-right:20px;">
     <a routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{exact:true}">Inicio</a>
     <a routerLink="/productos" routerLinkActive="active">Productos</a>
-    <a routerLink="/login" routerLinkActive="active">Ingresar</a>
+    <a *ngIf="!authService.estaLogueado()" routerLink="/login" routerLinkActive="active">Ingresar</a>
+    <a *ngIf="authService.estaLogueado()" (click)="salir()">Salir</a>
     <a routerLink="/carrito" routerLinkActive="active">Mi Carrito</a>
   </nav>
 </div>
