@@ -10,6 +10,7 @@ import { RegisterComponent } from './register/register.component';
 import { LoginComponent } from './login/login.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { ToastrModule } from 'ngx-toastr';
 
 
 // PrimeNG Modules
@@ -23,8 +24,6 @@ import { RippleModule } from 'primeng/ripple';
 
 @NgModule({ declarations: [
         AppComponent,
-        ProductosComponent,
-        CarritoComponent,
         HomeComponent,
         RegisterComponent,
         LoginComponent
@@ -43,7 +42,10 @@ import { RippleModule } from 'primeng/ripple';
     BadgeModule,
     InputTextModule,
     RippleModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    ToastrModule.forRoot(),
+    ProductosComponent,
+    CarritoComponent
   ],
     bootstrap: [AppComponent], 
     providers: [provideHttpClient(withInterceptorsFromDi())] })

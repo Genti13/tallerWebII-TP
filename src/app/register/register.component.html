@@ -57,6 +57,11 @@
     <p-button type="submit" label="Registrarse" [disabled]="formRegistro.invalid" class="boton-registro"></p-button>
   </form>
   <br>
+  <div *ngIf="mensajeError" class="alert alert-danger mt-2">
+  {{ mensajeError }}
+</div>
+
+  <br>
   <p-button routerLink="/login" routerLinkActive="active" class="redirigir">¿Ya tenés cuenta? Inicia sesión</p-button>
  
 </div>

@@ -11,6 +11,7 @@ import { RegisterService } from '../servicios/RegisterService/register.service';
 })
 export class RegisterComponent implements OnInit {
   formRegistro!: FormGroup;
+  mensajeError: string = '';
 
   constructor(private fb: FormBuilder, private registerService: RegisterService) {}
 
@@ -46,17 +47,23 @@ export class RegisterComponent implements OnInit {
     password
   };
 
-  this.registerService.registrarUsuario(datosRegistro).subscribe({
-    next: (respuesta) => {
-      console.log('Registro exitoso:', respuesta);
-      alert('¡Registro exitoso!');
-      this.formRegistro.reset();
-    },
-    error: (error: HttpErrorResponse) => {
-      console.error('Error al registrar:', error);
-      alert('Ocurrió un error al registrar. Verificá los datos o intentá más tarde.');
+
+this.registerService.registrarUsuario(datosRegistro).subscribe({
+  next: (respuesta) => {
+    alert('¡Registro exitoso!');
+    this.formRegistro.reset();
+    this.mensajeError = '';
+  },
+  error: (error: HttpErrorResponse) => {
+    if (error.status === 400 && error.error?.message) {
+      this.mensajeError = error.error.message; 
+    } else {
+      this.mensajeError = 'Ocurrió un error al registrar. Verificá los datos o intentá más tarde.';
     }
-  });
+  }
+});
+
+
 }
 
 

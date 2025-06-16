@@ -29,24 +29,13 @@ iniciarSesion() {
     const datos = this.formLogin.value;
     console.log('Login:', datos);
 
-    // this.loginService.loginUsuario(datos).subscribe(
-    //   res => {
-    //     console.log('Login exitoso:', res);
-    //     this.errorMsg = '';  // limpiar mensaje de error
-    //     // Acá podés redirigir o guardar token, etc.
-    //   },
-    //   err => {
-    //     console.error('Error de login:', err);
-    //     this.errorMsg = 'Email o contraseña incorrectos';
-    //   }
-    // );
   this.loginService.loginUsuario(datos).subscribe(
   res => {
     console.log('Login exitoso:', res);
     this.errorMsg = '';
 
-    this.authService.login(); // ← GUARDAMOS ESTADO DE LOGIN
-    this.router.navigate(['/']); // ← REDIRECCIÓN DESPUÉS DEL LOGIN
+    this.authService.login(); 
+    this.router.navigate(['/']); 
   },
   err => {
     console.error('Error de login:', err);

@@ -7,7 +7,6 @@ export class AuthService {
   private isLoggedIn = false;
 
   constructor() {
-    // Al recargar la app, recuperamos el estado del localStorage
     this.isLoggedIn = localStorage.getItem('logueado') === 'true';
   }
 

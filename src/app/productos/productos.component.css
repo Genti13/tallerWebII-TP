@@ -1,20 +1,27 @@
-h2{
-    color: #2a8484;
+.producto-card {
+  background: #c4caff;
+  transition: transform 0.2s;
+  box-shadow: 0 4px 24px rgba(0,0,0,0.10);
+}
+.producto-card:hover {
+  transform: translateY(-8px) scale(1.03);
+  box-shadow: 0 8px 32px rgba(0,0,0,0.16);
 }
 
-button{
-      background-color: #2a8484;
-  color: white;
-  border: none;
-  border-radius: 8px;
-  padding: 10px 20px;
+.custom-toastr {
+  background: #e0f7fa !important;
+  color: #00796b !important;
+  border-radius: 12px !important;
   font-weight: bold;
-  font-size: 16px;
-  cursor: pointer;
-  transition: background-color 0.3s ease, transform 0.2s ease;
+  box-shadow: 0 4px 16px rgba(0,0,0,0.10);
+  border: 2px solid #4dd0e1 !important;
+  padding: 16px 24px !important;
+  font-size: 1.1rem;
 }
 
-button:hover{
-     background-color: #247171;
-  transform: scale(1.03);
+.producto-img {
+  height: 180px; 
+  object-fit: cover; 
+  max-width: 180px; 
+  display: block;
 }

@@ -7,7 +7,7 @@ import { environment } from 'src/environments/environment';
   providedIn: 'root'
 })
 export class LoginService {
-  private API_URL = `${environment.apiUrl}/login`;  // URL del backend + /login
+  private API_URL = `${environment.apiUrl}/login`;  
 
   constructor(private http: HttpClient) {}
 
