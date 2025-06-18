@@ -17,6 +17,7 @@ export class CarritoService {
   }
 
   addItem(producto: Producto, cantidad: number = 1): void {
+    console.log(producto)
     const existente = this.items.find(item => item.producto.id === producto.id);
     if (existente) {
       existente.cantidad += cantidad;
