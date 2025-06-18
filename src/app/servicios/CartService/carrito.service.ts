@@ -32,4 +32,6 @@ export class CarritoService {
   removeItem(index: number): void {
     this.items.splice(index, 1);
   }
+
+  
 }

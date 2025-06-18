@@ -45,5 +45,17 @@
         <i class="bi bi-cart-x"></i> Vaciar carrito
       </button>
     </div>
+    <br>
+        <!-- Si el usuario está logueado -->
+    <button *ngIf="authService.estaLogueado()" class="btn btn-primary" (click)="continuarCompra()">
+      <i class="bi bi-bag-check"></i> Continuar compra
+    </button>
+
+    <!-- Si NO está logueado -->
+    <div *ngIf="!authService.estaLogueado()" class="alert alert-warning mt-3">
+      <i class="bi bi-exclamation-circle"></i>
+      Para continuar con la compra debés <a routerLink="/login">iniciar sesión</a>.
+    </div>
+
   </div>
 </div>

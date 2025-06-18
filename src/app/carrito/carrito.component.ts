@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { CarritoService, ItemCarrito } from '../servicios/CartService/carrito.service';
 import { CommonModule } from '@angular/common';
 import { ToastrService } from 'ngx-toastr';
+import { AuthService } from '../servicios/AuthService/auth.service';
 
 @Component({
   selector: 'app-carrito',
@@ -13,6 +14,7 @@ import { ToastrService } from 'ngx-toastr';
 export class CarritoComponent {
   constructor(
     public carritoService: CarritoService,
+    public authService: AuthService,
     private toastr: ToastrService
   ) {}
 
@@ -50,4 +52,6 @@ export class CarritoComponent {
       }
     );
   }
+
+
 }
