@@ -25,6 +25,7 @@ import { FormsModule } from '@angular/forms';
 export class ProductosComponent implements OnInit {
   productos: Producto[] = [];
   filtro: string = '';
+  
 
   constructor(
   private productoService: ProductoService,
