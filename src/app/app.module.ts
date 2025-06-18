@@ -28,7 +28,7 @@ import { RippleModule } from 'primeng/ripple';
         RegisterComponent,
         LoginComponent,
         //ProductosComponent,
-       // CarritoComponent,
+       //CarritoComponent,
         HomeComponent
     ],
     imports: [
