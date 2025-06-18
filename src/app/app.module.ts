@@ -27,8 +27,8 @@ import { RippleModule } from 'primeng/ripple';
         HomeComponent,
         RegisterComponent,
         LoginComponent,
-        ProductosComponent,
-        CarritoComponent,
+        //ProductosComponent,
+       // CarritoComponent,
         HomeComponent
     ],
     imports: [
@@ -50,7 +50,6 @@ import { RippleModule } from 'primeng/ripple';
     ProductosComponent,
     CarritoComponent
   ],
-    bootstrap: [AppComponent], 
-    imports: [BrowserModule, AppRoutingModule],
+    bootstrap: [AppComponent],
     providers: [provideHttpClient(withInterceptorsFromDi())] })
 export class AppModule { }
