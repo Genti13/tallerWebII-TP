@@ -23,11 +23,7 @@ import { BadgeModule } from 'primeng/badge';
 import { RippleModule } from 'primeng/ripple';
 
 @NgModule({ declarations: [
-        AppComponent,
-        RegisterComponent,
-        LoginComponent
-
-       
+        AppComponent
     ],
     imports: [
     BrowserModule,
@@ -38,7 +34,7 @@ import { RippleModule } from 'primeng/ripple';
     InputTextModule,
     PasswordModule,
     ButtonModule,
-       MenubarModule,
+    MenubarModule,
     AvatarModule,
     BadgeModule,
     InputTextModule,
@@ -47,7 +43,9 @@ import { RippleModule } from 'primeng/ripple';
     ToastrModule.forRoot(),
     ProductosComponent,
     CarritoComponent,
-    HomeComponent
+    HomeComponent,
+    RegisterComponent,
+    LoginComponent
 
    
   ],

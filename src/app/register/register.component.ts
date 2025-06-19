@@ -2,12 +2,26 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { HttpErrorResponse } from '@angular/common/http';
 import { RegisterService } from '../servicios/RegisterService/register.service';
+import { ReactiveFormsModule } from '@angular/forms';
+import { CommonModule } from '@angular/common';
+import { RouterModule } from '@angular/router';
+import { InputTextModule } from 'primeng/inputtext';
+import { PasswordModule } from 'primeng/password';
+import { ButtonModule } from 'primeng/button';
 
 @Component({
   selector: 'app-register',
   templateUrl: './register.component.html',
-   standalone: false,
-  styleUrls: ['./register.component.css']
+   standalone: true,
+  styleUrls: ['./register.component.css'],
+  imports: [
+    CommonModule,
+    ReactiveFormsModule,
+    RouterModule,
+    InputTextModule,
+    PasswordModule,
+    ButtonModule
+  ]
 })
 export class RegisterComponent implements OnInit {
   formRegistro!: FormGroup;

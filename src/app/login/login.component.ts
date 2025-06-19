@@ -3,12 +3,26 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { LoginService } from '../servicios/LoginService/login.service';  
 import { Router } from '@angular/router';
 import { AuthService } from '../servicios/AuthService/auth.service';
+import { ReactiveFormsModule } from '@angular/forms';
+import { CommonModule } from '@angular/common';
+import { RouterModule } from '@angular/router';
+import { InputTextModule } from 'primeng/inputtext';
+import { PasswordModule } from 'primeng/password';
+import { ButtonModule } from 'primeng/button';
 
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
-  standalone: false,
-  styleUrls: ['./login.component.css']
+  standalone: true,
+  styleUrls: ['./login.component.css'],
+  imports: [
+    CommonModule,
+    ReactiveFormsModule,
+    RouterModule,
+    InputTextModule,
+    PasswordModule,
+    ButtonModule
+  ]
 })
 export class LoginComponent implements OnInit {
   formLogin!: FormGroup;
