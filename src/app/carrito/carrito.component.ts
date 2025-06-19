@@ -3,6 +3,7 @@ import { CarritoService, ItemCarrito } from '../servicios/CartService/carrito.se
 import { CommonModule } from '@angular/common';
 import { ToastrService } from 'ngx-toastr';
 import { AuthService } from '../servicios/AuthService/auth.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-carrito',
@@ -15,7 +16,8 @@ export class CarritoComponent {
   constructor(
     public carritoService: CarritoService,
     public authService: AuthService,
-    private toastr: ToastrService
+    private toastr: ToastrService,
+    private router: Router
   ) {}
 
   get items(): ItemCarrito[] {
@@ -52,6 +54,11 @@ export class CarritoComponent {
       }
     );
   }
+
+  continuarCompra() {
+  this.router.navigate(['/contacto-compra']);
+}
+
 
 
 }

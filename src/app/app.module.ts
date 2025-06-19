@@ -24,12 +24,10 @@ import { RippleModule } from 'primeng/ripple';
 
 @NgModule({ declarations: [
         AppComponent,
-        HomeComponent,
         RegisterComponent,
-        LoginComponent,
-        //ProductosComponent,
-       //CarritoComponent,
-        HomeComponent
+        LoginComponent
+
+       
     ],
     imports: [
     BrowserModule,
@@ -48,7 +46,10 @@ import { RippleModule } from 'primeng/ripple';
     BrowserAnimationsModule,
     ToastrModule.forRoot(),
     ProductosComponent,
-    CarritoComponent
+    CarritoComponent,
+    HomeComponent
+
+   
   ],
     bootstrap: [AppComponent],
     providers: [provideHttpClient(withInterceptorsFromDi())] })

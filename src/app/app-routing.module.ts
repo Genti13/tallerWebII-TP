@@ -5,6 +5,7 @@ import { CarritoComponent } from './carrito/carrito.component';
 import { HomeComponent } from './home/home.component';
 import { RegisterComponent } from './register/register.component';
 import { LoginComponent } from './login/login.component';
+import { ContactoCompraComponent } from './contacto-compra/contacto-compra.component';
 
 const routes: Routes = [
   { path: '', component: HomeComponent, pathMatch: 'full' },
@@ -12,7 +13,10 @@ const routes: Routes = [
   { path: 'carrito', component: CarritoComponent },
   { path: 'register', component: RegisterComponent },
   { path: 'login', component: LoginComponent },
+  { path: 'contacto-compra', component: ContactoCompraComponent },
   { path: '**', redirectTo: '' } // ruta wildcard por si alguien entra mal
+ 
+
 ];
 
 @NgModule({
