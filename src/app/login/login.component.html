@@ -1,0 +1,36 @@
+<div class="container mt-4">
+  <h2 class="mb-4">Login</h2>
+
+  <form (ngSubmit)="onSubmit()" #loginForm="ngForm" novalidate>
+
+    <div class="mb-3">
+      <label for="email" class="form-label">Correo electrónico</label>
+      <input type="email" id="email" name="email" class="form-control" [(ngModel)]="email" required email
+        #emailRef="ngModel" />
+      <div *ngIf="emailRef.invalid && emailRef.touched" class="text-danger mt-1">
+        <small *ngIf="emailRef.errors?.['required']">El email es obligatorio.</small>
+        <small *ngIf="emailRef.errors?.['email']">El email debe contener &#64; y .com</small>
+      </div>
+    </div>
+
+    <div class="mb-3">
+      <label for="password" class="form-label">Contraseña</label>
+      <input type="password" id="password" name="password" class="form-control" [(ngModel)]="password" required
+        minlength="6" pattern=".*\d.*" #passwordRef="ngModel" />
+      <div *ngIf="passwordRef.invalid && passwordRef.touched" class="text-danger mt-1">
+        <small *ngIf="passwordRef.errors?.['required']">La contraseña es obligatoria.</small>
+        <small *ngIf="passwordRef.errors?.['minlength']">Debe tener al menos 6 caracteres.<br></small>
+        <small *ngIf="passwordRef.errors?.['pattern']">Debe incluir al menos un número.</small>
+      </div>
+    </div>
+
+    <button type="submit" class="btn btn-primary" [disabled]="loginForm.invalid">
+      Ingresar
+    </button>
+
+  </form>
+
+  <div *ngIf="loginError" class="alert alert-danger mt-3">
+    {{ loginError }}
+  </div>
+</div>
