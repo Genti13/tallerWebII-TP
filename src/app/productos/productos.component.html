@@ -1,14 +1,20 @@
 <div class="container mt-4">
   <br>
   <h2 class="mb-4">🐾 Lista de Productos</h2>
-  <div class="mb-3">
-    <input
-      type="text"
-      class="form-control"
-      placeholder="Buscar producto..."
-      [(ngModel)]="filtro"
-    />
-  </div>
+  <div class="mb-3 d-flex justify-content-between">
+  <input
+    type="text"
+    class="form-control w-75"
+    placeholder="Buscar producto..."
+    [(ngModel)]="filtro"
+  />
+  <select class="form-select w-25 ms-2" [(ngModel)]="ordenPrecio">
+    <option value="">Ordenar por precio</option>
+    <option value="menor">Menor a mayor</option>
+    <option value="mayor">Mayor a menor</option>
+  </select>
+</div>
+
   <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 g-4">
     <div *ngFor="let producto of productosFiltrados()" class="col">
       <div class="card h-100 shadow-lg rounded-4 border-0 producto-card" [@fadeInUp]>

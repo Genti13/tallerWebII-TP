@@ -27,6 +27,7 @@ import { FormsModule } from '@angular/forms';
 export class ProductosComponent implements OnInit {
   productos: Producto[] = [];
   filtro: string = '';
+  ordenPrecio: string = '';
   
 
   constructor(
@@ -70,13 +71,29 @@ export class ProductosComponent implements OnInit {
   );
 }
 
-  productosFiltrados(): Producto[] {
-    if (!this.filtro.trim()) return this.productos;
-    const filtroLower = this.filtro.toLowerCase();
-    return this.productos.filter(p =>
-      p.nombre.toLowerCase().includes(filtroLower) ||
-      p.descripcion.toLowerCase().includes(filtroLower) ||
-      p.clasificacion.toLowerCase().includes(filtroLower)
-    );
+
+productosFiltrados(): Producto[] {
+  if (!this.filtro.trim()) {
+    return this.ordenarPorPrecio(this.productos);
   }
+
+  const filtroLower = this.filtro.toLowerCase();
+  const filtrados = this.productos.filter(p =>
+    p.nombre.toLowerCase().includes(filtroLower) ||
+    p.descripcion.toLowerCase().includes(filtroLower) ||
+    p.clasificacion.toLowerCase().includes(filtroLower)
+  );
+
+  return this.ordenarPorPrecio(filtrados);
+}
+
+ordenarPorPrecio(productos: Producto[]): Producto[] {
+  if (this.ordenPrecio === 'menor') {
+    return productos.sort((a, b) => a.precio - b.precio);
+  } else if (this.ordenPrecio === 'mayor') {
+    return productos.sort((a, b) => b.precio - a.precio);
+  }
+  return productos;
+}
+
 }
