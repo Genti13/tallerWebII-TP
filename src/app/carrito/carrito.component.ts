@@ -51,6 +51,20 @@ export class CarritoComponent {
     );
   }
 
+  // Función para ver el historial de pedidos
+  verPedidos(): void {
+    this.router.navigate(['/pedidos']);
+    this.toastr.info(
+      'Navegando a tus pedidos',
+      'Historial de pedidos',
+      {
+        timeOut: 1500,
+        positionClass: 'toast-top-right',
+        toastClass: 'ngx-toastr custom-toastr'
+      }
+    );
+  }
+
   // Función para iniciar sesión
   iniciarSesion(): void {
     this.router.navigate(['/login']);
