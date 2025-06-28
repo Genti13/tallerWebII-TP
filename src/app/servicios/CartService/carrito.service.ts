@@ -26,6 +26,12 @@ export class CarritoService {
     }
   }
 
+  updateQuantity(index: number, nuevaCantidad: number): void {
+    if (index >= 0 && index < this.items.length && nuevaCantidad > 0) {
+      this.items[index].cantidad = nuevaCantidad;
+    }
+  }
+
   clearCart(): void {
     this.items = [];
   }
@@ -33,6 +39,4 @@ export class CarritoService {
   removeItem(index: number): void {
     this.items.splice(index, 1);
   }
-
-  
 }
