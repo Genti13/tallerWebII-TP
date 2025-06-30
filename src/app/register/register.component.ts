@@ -23,9 +23,10 @@ import { ButtonModule } from 'primeng/button';
     ButtonModule
   ]
 })
+
 export class RegisterComponent implements OnInit {
   formRegistro!: FormGroup;
-  mensajeError: string = '';
+  mensajeErrores: string[] = []; 
 
   constructor(private fb: FormBuilder, private registerService: RegisterService) {}
 
@@ -41,44 +42,53 @@ export class RegisterComponent implements OnInit {
   }
 
   registrarse() {
+  this.mensajeErrores = []; 
+
   if (this.formRegistro.invalid) {
     this.formRegistro.markAllAsTouched();
-    return;
+    this.mensajeErrores.push('Complete todos los campos correctamente');
+    return; 
   }
 
   const { nombre, apellido, direccion, email, password, confirmar } = this.formRegistro.value;
+  const datosRegistro = { nombre, apellido, direccion, email, password };
 
-  if (password !== confirmar) {
-    alert('Las contraseñas no coinciden');
-    return;
-  }
+  this.registerService.registrarUsuario(datosRegistro).subscribe({
+    next: (respuesta) => {
+      this.mensajeErrores = [];
 
-  const datosRegistro = {
-    nombre,
-    apellido,
-    direccion,
-    email,
-    password
-  };
+      // Validación de contraseña
+      if (password !== confirmar) {
+        this.mensajeErrores.push('Las contraseñas no coinciden');
+        return; 
+      }
 
+      alert('¡Registro exitoso!');
+      this.formRegistro.reset();
+    },
+    error: (error: HttpErrorResponse) => {
+      this.mensajeErrores = []; 
 
-this.registerService.registrarUsuario(datosRegistro).subscribe({
-  next: (respuesta) => {
-    alert('¡Registro exitoso!');
-    this.formRegistro.reset();
-    this.mensajeError = '';
-  },
-  error: (error: HttpErrorResponse) => {
-    if (error.status === 400 && error.error?.message) {
-      this.mensajeError = error.error.message; 
-    } else {
-      this.mensajeError = 'Ocurrió un error al registrar. Verificá los datos o intentá más tarde.';
+      // Si devuelve varios errores
+      if (error.error?.errors && Array.isArray(error.error.errors)) {
+        this.mensajeErrores = error.error.errors;
+      }
+      // Si devuelve un único error 
+      else if (error.error?.error) {
+        if (error.error.error === 'El email ya está registrado') {
+          this.mensajeErrores.push('El email ya está registrado. Por favor usa otro.');
+        } else {
+          this.mensajeErrores.push(error.error.error);
+        }
+      } else {
+        this.mensajeErrores.push('Ocurrió un error al registrar. Verificá los datos o intentá más tarde.');
+      }
+
+      if (password !== confirmar && !this.mensajeErrores.includes('Las contraseñas no coinciden')) {
+        this.mensajeErrores.push('Las contraseñas no coinciden');
+      }
     }
-  }
-});
-
-
+  });
 }
-
 
 }
