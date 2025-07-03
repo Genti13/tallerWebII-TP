@@ -1,3 +1,7 @@
+body, .producto-card, .custom-toastr, .producto-img, input, select, h2, .form-control, .form-select {
+  font-family: 'Fredoka', sans-serif !important;
+}
+
 .producto-card {
   background: #98cec7;
   transition: transform 0.2s;

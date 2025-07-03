@@ -15,7 +15,7 @@ h2{
   border-radius: 10px;
   box-shadow: 0 0 10px rgba(0,0,0,0.1);
   background: white;
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  font-family: 'Fredoka', sans-serif !important;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -110,6 +110,9 @@ input.p-inputtext {
   text-decoration: underline;
 }
 
+body, .background, .login-container, .p-field, .p-field label, .p-field input, h2, .boton-login, .redirigir {
+  font-family: 'Fredoka', sans-serif !important;
+}
 
 @media (max-width: 500px) {
   .background {
