@@ -40,7 +40,10 @@ export class ProductosComponent implements OnInit {
   ngOnInit(): void {
     this.productoService.getProductos().subscribe(productos => {
       console.log('Productos recibidos:', productos); //debug
-      this.productos = productos;
+      this.productos = (productos || []).filter(p => !!p).map(p => ({
+        ...p,
+        cantidadSeleccionada: p.cantidadSeleccionada ?? 1
+      }));
     });
   }
 
@@ -123,6 +126,10 @@ ordenarPorPrecio(productos: Producto[]): Producto[] {
     return productos.sort((a, b) => b.precio - a.precio);
   }
   return productos;
+}
+
+isCantidadInvalida(valor: any): boolean {
+  return valor === null || valor === undefined || valor <= 0 || isNaN(Number(valor));
 }
 
 }
