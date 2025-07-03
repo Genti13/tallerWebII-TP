@@ -1,14 +1,14 @@
 /* ===== CONTAINER PRINCIPAL ===== */
 .carrito-container {
   min-height: 100vh;
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  background: linear-gradient(135deg, #00796b 0%, #232525 100%);
   padding: 0;
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
 /* ===== HEADER CON GRADIENTE ===== */
 .carrito-header {
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  background: linear-gradient(135deg, #0c9787 0%, #3854a1 100%);
   padding: 3rem 0;
   text-align: center;
   position: relative;
