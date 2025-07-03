@@ -1,62 +1,156 @@
-<div class="container mt-4">
-  <br>
-  <h2 class="mb-4">🛒 Carrito de Compras</h2>
-  <div *ngIf="items.length === 0" class="alert alert-info text-center">
-    Tu carrito está vacío.
+<div class="carrito-container">
+  <!-- Header con gradiente -->
+  <div class="carrito-header">
+    <div class="header-content">
+      <div class="header-icon">
+        <i class="bi bi-cart3"></i>
+      </div>
+      <h1 class="header-title">🛒 Tu Carrito de Compras</h1>
+      <div class="header-subtitle">Gestiona tus productos seleccionados</div>
+      <div class="header-actions">
+        <button class="btn-ver-pedidos" (click)="verPedidos()">
+          <i class="bi bi-box-seam"></i>
+          Ver Mis Pedidos
+        </button>
+      </div>
+    </div>
   </div>
-  <div *ngIf="items.length > 0">
-    <table class="table table-bordered table-striped align-middle">
-      <thead class="table-primary">
-        <tr>
-          <th>#</th>
-          <th>Producto</th>
-          <th>Clasificación</th>
-          <th>Cantidad</th>
-          <th>Precio unitario</th>
-          <th>Subtotal</th>
-          <th>Quitar</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr *ngFor="let item of items; index as i">
-          <td>{{ i + 1 }}</td>
-          <td>{{ item.producto.nombre }}</td>
-          <td>{{ item.producto.clasificacion }}</td>
-          <td>{{ item.cantidad }}</td>
-          <td class="fw-bold">$ {{ item.producto.precio | number:'1.2-2' }}</td>
-          <td class="fw-bold">$ {{ (item.producto.precio * item.cantidad) | number:'1.2-2' }}</td>
-          <td>
-            <button class="btn btn-danger btn-sm"
-                    (click)="eliminarItem(i)">
-              <i class="bi bi-trash"></i>
-            </button>
-          </td>
-        </tr>
-      </tbody>
-      <tfoot>
-        <tr>
-          <td colspan="5" class="text-end fw-bold">Total:</td>
-          <td colspan="2" class="fw-bold text-success">$ {{ total | number:'1.2-2' }}</td>
-        </tr>
-      </tfoot>
-    </table>
-    <div class="d-flex justify-content-end">
-      <button class="btn btn-secondary" (click)="vaciarCarrito()">
-        <i class="bi bi-cart-x"></i> Vaciar carrito
+
+  <!-- Contenido principal -->
+  <div class="carrito-content">
+    <!-- Carrito vacío -->
+    <div *ngIf="items.length === 0" class="empty-cart">
+      <div class="empty-cart-icon">
+        <i class="bi bi-cart-x"></i>
+      </div>
+      <h3 class="empty-cart-title">Tu carrito está vacío</h3>
+      <p class="empty-cart-text">¡Agrega algunos productos para comenzar a comprar!</p>
+      <button class="btn-shop-now" (click)="irAProductos()">
+        <i class="bi bi-arrow-left"></i>
+        Ir a Productos
       </button>
-    </div>
-    <br>
-        <!-- Si el usuario está logueado -->
-    <div class="d-flex justify-content-end">
-      <button *ngIf="authService.estaLogueado()" class="btn btn-primary" (click)="continuarCompra()">
-        <i class="bi bi-bag-check"></i> Continuar compra
-      </button>
-    </div>
-    <!-- Si NO está logueado -->
-    <div *ngIf="!authService.estaLogueado()" class="alert alert-warning mt-3">
-      <i class="bi bi-exclamation-circle"></i>
-      Para continuar con la compra debés <a routerLink="/login">iniciar sesión</a>.
     </div>
 
+    <!-- Carrito con productos -->
+    <div *ngIf="items.length > 0" class="cart-with-items">
+      <!-- Resumen rápido -->
+      <div class="cart-summary">
+        <div class="summary-card">
+          <div class="summary-item">
+            <span class="summary-label">Productos:</span>
+            <span class="summary-value">{{ items.length }}</span>
+          </div>
+          <div class="summary-item">
+            <span class="summary-label">Total:</span>
+            <span class="summary-total">$ {{ total | number:'1.2-2' }}</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Lista de productos -->
+      <div class="products-container">
+        <div class="products-header">
+          <h3 class="products-title">Productos en tu carrito</h3>
+          <button class="btn-clear-cart" (click)="vaciarCarrito()">
+            <i class="bi bi-trash3"></i>
+            Vaciar carrito
+          </button>
+        </div>
+
+        <div class="products-list">
+          <div *ngFor="let item of items; index as i" class="product-card" [@slideInUp]>
+            <div class="product-image">
+              <img [src]="item.producto.imagen_url" [alt]="item.producto.nombre" class="product-img">
+              <div class="product-badge">{{ i + 1 }}</div>
+            </div>
+            
+            <div class="product-info">
+              <h4 class="product-name">{{ item.producto.nombre }}</h4>
+              <p class="product-description">{{ item.producto.descripcion }}</p>
+              <div class="product-category">
+                <span class="category-badge">{{ item.producto.clasificacion }}</span>
+              </div>
+            </div>
+
+            <div class="product-quantity">
+              <div class="quantity-controls">
+                <button class="quantity-btn" (click)="decrementarCantidad(i)" [disabled]="item.cantidad <= 1">
+                  <i class="bi bi-dash"></i>
+                </button>
+                <span class="quantity-value">{{ item.cantidad }}</span>
+                <button class="quantity-btn" (click)="incrementarCantidad(i)">
+                  <i class="bi bi-plus"></i>
+                </button>
+              </div>
+            </div>
+
+            <div class="product-pricing">
+              <div class="price-info">
+                <span class="unit-price">$ {{ item.producto.precio | number:'1.2-2' }}</span>
+                <span class="subtotal">$ {{ (item.producto.precio * item.cantidad) | number:'1.2-2' }}</span>
+              </div>
+            </div>
+
+            <div class="product-actions">
+              <button class="btn-remove" (click)="eliminarItem(i)" title="Eliminar producto">
+                <i class="bi bi-x-circle"></i>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Resumen final -->
+      <div class="cart-footer">
+        <div class="footer-summary">
+          <div class="summary-row">
+            <span class="summary-text">Subtotal:</span>
+            <span class="summary-amount">$ {{ total | number:'1.2-2' }}</span>
+          </div>
+          <div class="summary-row">
+            <span class="summary-text">Envío:</span>
+            <span class="summary-amount">Gratis</span>
+          </div>
+          <div class="summary-row total-row">
+            <span class="summary-text">Total Final:</span>
+            <span class="summary-amount total-amount">$ {{ total | number:'1.2-2' }}</span>
+          </div>
+        </div>
+
+        <div class="footer-actions">
+          <!-- Usuario logueado -->
+          <div *ngIf="authService.estaLogueado()" class="checkout-section">
+            <button class="btn-checkout" (click)="continuarCompra()">
+              <i class="bi bi-bag-check"></i>
+              Continuar con la Compra
+            </button>
+            <button class="btn-continue-shopping" (click)="irAProductos()">
+              <i class="bi bi-arrow-left"></i>
+              Seguir Comprando
+            </button>
+          </div>
+
+          <!-- Usuario no logueado -->
+          <div *ngIf="!authService.estaLogueado()" class="login-section">
+            <div class="login-alert">
+              <i class="bi bi-exclamation-triangle"></i>
+              <div class="login-text">
+                <strong>Inicia sesión</strong> para continuar con tu compra
+              </div>
+            </div>
+            <div class="login-actions">
+              <button class="btn-login" (click)="iniciarSesion()">
+                <i class="bi bi-person"></i>
+                Iniciar Sesión
+              </button>
+              <button class="btn-register" (click)="registrarse()">
+                <i class="bi bi-person-plus"></i>
+                Registrarse
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
 </div>

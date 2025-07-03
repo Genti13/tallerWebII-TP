@@ -1,9 +1,21 @@
-<div class="container d-flex flex-column align-items-center justify-content-center" style="margin-top: 110px; min-height: 60vh;">
-  <img src="https://cdn-icons-png.flaticon.com/512/616/616408.png" class="mb-3 rounded-circle shadow" alt="Logo Petshop" style="max-width: 120px;">
-  <div class="display-5 fw-bold mb-2" style="color: #2a8484; text-align: center;">¡Bienvenido a <p style="font-family: 'Fredoka', sans-serif;">PetShop Mi Mascota!</p> </div>
-  <div class="lead text-secondary mb-4" style="text-align: center;">
+<div class="container d-flex flex-column align-items-center justify-content-center home-main animate-fade-in">
+  <!-- Iconos decorativos de huellas -->
+  <span class="paw-icon paw-top-left">🐾</span>
+  <span class="paw-icon paw-bottom-right">🐾</span>
+
+  <img src="https://cdn-icons-png.flaticon.com/512/616/616408.png" class="mb-3 rounded-circle shadow home-logo" alt="Logo Petshop">
+  <div class="display-5 fw-bold mb-2 home-title">
+    ¡Bienvenido a <span class="petshop-name">PetShop Mi Mascota!</span>
+  </div>
+  <div class="lead text-secondary mb-4 home-lead">
     El mejor lugar para consentir a tus mascotas.<br>
     Descubrí alimentos, juguetes y accesorios con un solo clic.<br>
     Usá el menú superior para explorar productos y ver tu carrito de compras.
   </div>
+  <!-- Frase motivacional animada -->
+  <div class="animated-phrase mt-2 mb-4">
+    <span id="typing-text"></span><span class="typing-cursor">|</span>
+  </div>
+  <!-- Botón destacado -->
+  <a routerLink="/productos" class="btn btn-lg btn-warning explore-btn shadow">Explorar productos</a>
 </div>

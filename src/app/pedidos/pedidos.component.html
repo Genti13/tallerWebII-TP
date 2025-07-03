@@ -1,0 +1,139 @@
+<div class="pedidos-container">
+  <!-- Header -->
+  <div class="pedidos-header">
+    <div class="header-content">
+      <div class="header-icon">
+        <i class="bi bi-box-seam"></i>
+      </div>
+      <h1 class="header-title">📦 Mis Pedidos</h1>
+      <div class="header-subtitle">Historial de tus compras</div>
+    </div>
+  </div>
+
+  <!-- Contenido principal -->
+  <div class="pedidos-content">
+    <!-- Filtros -->
+    <div class="filtros-section">
+      <div class="filtros-card">
+        <h3 class="filtros-title">Filtrar por estado</h3>
+        <div class="filtros-buttons">
+          <button 
+            class="filtro-btn" 
+            [class.active]="filtroEstado === 'TODOS'"
+            (click)="cambiarFiltro('TODOS')">
+            Todos
+          </button>
+          <button 
+            *ngFor="let estado of estados" 
+            class="filtro-btn" 
+            [class.active]="filtroEstado === estado"
+            [style.background-color]="filtroEstado === estado ? getEstadoColor(estado) : '#f8f9fa'"
+            [style.color]="filtroEstado === estado ? 'white' : '#495057'"
+            (click)="cambiarFiltro(estado)">
+            {{ getEstadoTexto(estado) }}
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Lista de pedidos -->
+    <div class="pedidos-list">
+      <!-- Sin pedidos -->
+      <div *ngIf="pedidosFiltrados.length === 0" class="no-pedidos">
+        <div class="no-pedidos-icon">
+          <i class="bi bi-inbox"></i>
+        </div>
+        <h3 class="no-pedidos-title">
+          {{ filtroEstado === 'TODOS' ? 'No tienes pedidos aún' : 'No hay pedidos con este estado' }}
+        </h3>
+        <p class="no-pedidos-text">
+          {{ filtroEstado === 'TODOS' ? '¡Haz tu primera compra para ver tus pedidos aquí!' : 'Cambia el filtro para ver otros pedidos' }}
+        </p>
+      </div>
+
+      <!-- Pedidos -->
+      <div *ngFor="let pedido of pedidosFiltrados" class="pedido-card" [@slideInUp]>
+        <!-- Header del pedido -->
+        <div class="pedido-header">
+          <div class="pedido-info">
+            <div class="pedido-id">
+              <span class="pedido-number">#{{ pedido.id }}</span>
+              <span class="pedido-date">{{ formatearFecha(pedido.fecha) }}</span>
+            </div>
+            <div class="pedido-stats">
+              <span class="pedido-items">{{ getTotalItems(pedido) }} productos</span>
+              <span class="pedido-total">$ {{ pedido.total | number:'1.2-2' }}</span>
+            </div>
+          </div>
+          <div class="pedido-actions">
+            <div class="estado-badge" [style.background-color]="getEstadoColor(pedido.estado)">
+              {{ getEstadoTexto(pedido.estado) }}
+            </div>
+            <button 
+              class="btn-toggle-detalles" 
+              (click)="toggleDetalles(pedido.id!)"
+              [class.expanded]="mostrarDetalles[pedido.id!]">
+              <i class="bi" [class.bi-chevron-down]="!mostrarDetalles[pedido.id!]" [class.bi-chevron-up]="mostrarDetalles[pedido.id!]"></i>
+            </button>
+          </div>
+        </div>
+
+        <!-- Detalles del pedido -->
+        <div *ngIf="mostrarDetalles[pedido.id!]" class="pedido-detalles" [@fadeIn]>
+          <!-- Información de contacto -->
+          <div *ngIf="pedido.direccionEnvio || pedido.telefono || pedido.email" class="contacto-info">
+            <h4 class="detalles-title">Información de contacto</h4>
+            <div class="contacto-grid">
+              <div *ngIf="pedido.direccionEnvio" class="contacto-item">
+                <i class="bi bi-geo-alt"></i>
+                <span>{{ pedido.direccionEnvio }}</span>
+              </div>
+              <div *ngIf="pedido.telefono" class="contacto-item">
+                <i class="bi bi-telephone"></i>
+                <span>{{ pedido.telefono }}</span>
+              </div>
+              <div *ngIf="pedido.email" class="contacto-item">
+                <i class="bi bi-envelope"></i>
+                <span>{{ pedido.email }}</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Productos del pedido -->
+          <div class="productos-pedido">
+            <h4 class="detalles-title">Productos</h4>
+            <div class="productos-list">
+              <div *ngFor="let item of pedido.items" class="producto-item">
+                <div class="producto-image">
+                  <img [src]="item.imagen_url" [alt]="item.nombre" class="producto-img">
+                </div>
+                <div class="producto-info">
+                  <h5 class="producto-nombre">{{ item.nombre }}</h5>
+                  <p class="producto-descripcion">{{ item.descripcion }}</p>
+                  <div class="producto-cantidad">
+                    Cantidad: {{ item.cantidad }}
+                  </div>
+                </div>
+                <div class="producto-precio">
+                  <span class="precio-unitario">$ {{ item.precio | number:'1.2-2' }}</span>
+                  <span class="precio-subtotal">$ {{ item.subtotal | number:'1.2-2' }}</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Acciones del pedido -->
+          <div class="pedido-acciones">
+            <button 
+              *ngIf="puedeCancelar(pedido)"
+              class="btn-cancelar-pedido" 
+              (click)="cancelarPedido(pedido)">
+              <i class="bi bi-x-circle"></i>
+              Cancelar Pedido
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div> 

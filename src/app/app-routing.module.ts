@@ -6,6 +6,7 @@ import { HomeComponent } from './home/home.component';
 import { RegisterComponent } from './register/register.component';
 import { LoginComponent } from './login/login.component';
 import { ContactoCompraComponent } from './contacto-compra/contacto-compra.component';
+import { PedidosComponent } from './pedidos/pedidos.component';
 
 const routes: Routes = [
   { path: '', component: HomeComponent, pathMatch: 'full' },
@@ -14,6 +15,7 @@ const routes: Routes = [
   { path: 'register', component: RegisterComponent },
   { path: 'login', component: LoginComponent },
   { path: 'contacto-compra', component: ContactoCompraComponent },
+  { path: 'pedidos', component: PedidosComponent },
   { path: '**', redirectTo: '' } // ruta wildcard por si alguien entra mal
  
 
