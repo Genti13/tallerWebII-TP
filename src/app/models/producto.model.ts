@@ -5,4 +5,6 @@ export interface Producto {
   clasificacion: string;
   precio: number;
   imagen_url?: string;
+  cantidadSeleccionada?: number;
+
 }

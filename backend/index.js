@@ -15,7 +15,7 @@ const productosRoutes = require('./productosRoutes');
 const usuariosRoutes = require('./usuariosRoutes');
 
 app.use('/api/productos', productosRoutes);
-app.use('/', usuariosRoutes); // ✅ Ahora /register y /login funcionan sin prefijo
+app.use('/', usuariosRoutes); // Ahora /register y /login funcionan sin prefijo
 
 // Datos en memoria (esto reemplaza la BD, es solo para pruebas)
 let productos = [

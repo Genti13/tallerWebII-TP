@@ -109,6 +109,22 @@ input.p-inputtext {
   text-decoration: underline;
 }
 
+.error-container {
+  background-color: #f8d7da; 
+  color: #721c24; 
+  border: 1px solid #f5c6cb;
+  padding: 1rem;
+  margin-top: 1rem;
+  border-radius: 4px;
+}
+
+.error-item {
+  margin-bottom: 0.5rem;
+}
+
+.error-item:last-child {
+  margin-bottom: 0;
+}
 
 @media (max-width: 500px) {
   .background {
