@@ -6,14 +6,37 @@ export interface ItemCarrito {
   cantidad: number;
 }
 
+export interface Filtros {
+  filtro_texto: string;
+  filtro_categoria: string;
+  filtro_min: number;
+  filtro_max: number;
+  orden: string;
+}
+
 @Injectable({
   providedIn: 'root'
 })
 export class CarritoService {
   private items: ItemCarrito[] = [];
+  private filtros: Filtros = {
+    filtro_texto: '',
+    filtro_categoria: '',
+    filtro_min: 0,
+    filtro_max: 0,
+    orden: ''
+  };
 
   getItems(): ItemCarrito[] {
     return this.items;
+  }
+
+  saveFilters(filtros: Filtros) {
+    this.filtros = filtros;
+  }
+
+  getFilters() {
+    return this.filtros
   }
 
   addItem(producto: Producto, cantidad: number = 1): void {

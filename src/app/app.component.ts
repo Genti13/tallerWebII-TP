@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { AuthService } from './servicios/AuthService/auth.service';
+import { Router } from '@angular/router';
 
 @Component({
     selector: 'app-root',
@@ -8,12 +9,13 @@ import { AuthService } from './servicios/AuthService/auth.service';
     standalone: false
 })
 export class AppComponent {
-  constructor(public authService: AuthService) {}
+  constructor(public authService: AuthService, public router: Router) {}
   title = 'tallerWeb-tp';
 
 
 salir() {
     this.authService.logout();
+    this.router.navigate(['/']);
   }
 
 }

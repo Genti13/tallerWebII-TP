@@ -1,19 +1,57 @@
 <div class="container mt-4">
   <br>
   <h2 class="mb-4">🐾 Lista de Productos</h2>
-  <div class="mb-3 d-flex justify-content-between">
-  <input
-    type="text"
-    class="form-control w-75"
-    placeholder="Buscar producto..."
-    [(ngModel)]="filtro"
-  />
-  <select class="form-select w-25 ms-2" [(ngModel)]="ordenPrecio">
-    <option value="">Ordenar por precio</option>
-    <option value="menor">Menor a mayor</option>
-    <option value="mayor">Mayor a menor</option>
-  </select>
-</div>
+  <div class="mb-1 d-flex justify-content-between">
+    <input type="text" class="form-control w-75" placeholder="Buscar producto..." [(ngModel)]="filtro" />
+
+
+    <select class="form-select w-25 ms-2" [(ngModel)]="categoria">
+      <option value="">Filtrar categoria</option>
+      <option value="Accesorios">Accesorios</option>
+      <option value="Alimento">Alimento</option>
+      <option value="Camas">Camas</option>
+      <option value="Higiene">Higiene</option>
+      <option value="Juguetes">Juguetes</option>
+      <option value="Transporte">Transporte</option>
+    </select>
+
+
+  </div>
+  <div class="d-flex mb-2 gap-1">
+
+
+
+    <p-inputnumber [(ngModel)]="priceMin" [showButtons]="true" buttonLayout="horizontal" inputId="horizontal"
+      spinnerMode="horizontal" [step]="500" mode="currency" currency="USD" class="form-control w-25" locale="en-US"
+      [min]="0">
+
+      <ng-template #incrementbuttonicon>
+        <i class="bi bi-plus-lg"></i>
+      </ng-template>
+      <ng-template #decrementbuttonicon>
+        <i class="bi bi-dash"></i>
+      </ng-template>
+    </p-inputnumber>
+
+    <p-button label="~" class="form-control w-auto" (click)="resetPriceRange()" />
+
+    <p-inputnumber [(ngModel)]="priceMax" [showButtons]="true" buttonLayout="horizontal" inputId="horizontal"
+      spinnerMode="horizontal" [step]="500" mode="currency" currency="USD" class="form-control w-25" locale="en-US"
+      [min]="0">
+      <ng-template #incrementbuttonicon>
+        <i class="bi bi-plus-lg"></i>
+      </ng-template>
+      <ng-template #decrementbuttonicon>
+        <i class="bi bi-dash"></i>
+      </ng-template>
+    </p-inputnumber>
+
+    <select class="form-select w-25" [(ngModel)]="ordenPrecio">
+      <option value="">Ordenar por precio</option>
+      <option value="menor">Menor a mayor</option>
+      <option value="mayor">Mayor a menor</option>
+    </select>
+  </div>
 
   <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 g-4">
     <div *ngFor="let producto of productosFiltrados()" class="col">
@@ -27,21 +65,18 @@
         <div class="card-footer card-footer-producto d-flex justify-content-between align-items-center gap-2 flex-wrap">
           <span class="fw-bold fs-6 text-success precio-producto mb-0">$ {{ producto.precio | number:'1.2-2' }}</span>
           <div class="d-flex align-items-center gap-1 cantidad-footer">
-            <button type="button" class="btn btn-cantidad" [disabled]="producto.cantidadSeleccionada <= 1" (click)="producto.cantidadSeleccionada = producto.cantidadSeleccionada > 1 ? producto.cantidadSeleccionada - 1 : 1">
+            <button type="button" class="btn btn-cantidad" [disabled]="producto.cantidadSeleccionada <= 1"
+              (click)="producto.cantidadSeleccionada = producto.cantidadSeleccionada > 1 ? producto.cantidadSeleccionada - 1 : 1">
               –
             </button>
-            <input
-              type="number"
-              class="form-control form-control-sm border-primary text-center input-cantidad"
-              min="1"
-              [(ngModel)]="producto.cantidadSeleccionada"
-            />
-            <button type="button" class="btn btn-cantidad" (click)="producto.cantidadSeleccionada = (producto.cantidadSeleccionada || 1) + 1">
+            <input type="number" class="form-control form-control-sm border-primary text-center input-cantidad" min="1"
+              [(ngModel)]="producto.cantidadSeleccionada" />
+            <button type="button" class="btn btn-cantidad"
+              (click)="producto.cantidadSeleccionada = (producto.cantidadSeleccionada || 1) + 1">
               +
             </button>
-            <button class="btn btn-outline-primary btn-xs btn-agregar-carrito ms-2"
-                    (click)="agregarAlCarrito(producto)"
-                    [disabled]="isCantidadInvalida(producto.cantidadSeleccionada)">
+            <button class="btn btn-outline-primary btn-xs btn-agregar-carrito ms-2" (click)="agregarAlCarrito(producto)"
+              [disabled]="isCantidadInvalida(producto.cantidadSeleccionada)">
               <i class="bi bi-cart-plus"></i> Agregar
             </button>
           </div>
