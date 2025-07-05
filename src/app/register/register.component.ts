@@ -4,7 +4,7 @@ import { HttpErrorResponse } from '@angular/common/http';
 import { RegisterService } from '../servicios/RegisterService/register.service';
 import { ReactiveFormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
-import { RouterModule } from '@angular/router';
+import { RouterModule, Router } from '@angular/router';
 import { InputTextModule } from 'primeng/inputtext';
 import { PasswordModule } from 'primeng/password';
 import { ButtonModule } from 'primeng/button';
@@ -28,7 +28,7 @@ export class RegisterComponent implements OnInit {
   formRegistro!: FormGroup;
   mensajeErrores: string[] = []; 
 
-  constructor(private fb: FormBuilder, private registerService: RegisterService) {}
+  constructor(private fb: FormBuilder, private registerService: RegisterService, private router:Router) {}
 
   ngOnInit() {
     this.formRegistro = this.fb.group({
@@ -51,7 +51,7 @@ export class RegisterComponent implements OnInit {
   }
 
   const { nombre, apellido, direccion, email, password, confirmar } = this.formRegistro.value;
-  const datosRegistro = { nombre, apellido, direccion, email, password };
+  const datosRegistro = { nombre, apellido, direccion, email, password, confirmar };
 
   this.registerService.registrarUsuario(datosRegistro).subscribe({
     next: (respuesta) => {
@@ -65,6 +65,7 @@ export class RegisterComponent implements OnInit {
 
       alert('¡Registro exitoso!');
       this.formRegistro.reset();
+      this.router.navigate(['/']);
     },
     error: (error: HttpErrorResponse) => {
       this.mensajeErrores = []; 
