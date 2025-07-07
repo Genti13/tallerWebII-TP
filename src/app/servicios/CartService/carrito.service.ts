@@ -36,7 +36,17 @@ export class CarritoService {
   }
 
   getFilters() {
-    return this.filtros
+    return this.filtros;
+  }
+
+  resetFilters() {
+    this.filtros = {
+      filtro_texto: '',
+      filtro_categoria: '',
+      filtro_min: 0,
+      filtro_max: 0,
+      orden: ''
+    };
   }
 
   addItem(producto: Producto, cantidad: number = 1): void {
